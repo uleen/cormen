@@ -7,3 +7,30 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     },
   });
 };
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+
+  const { data } = await graphql(`
+    {
+      allShopifyProduct {
+        edges {
+          node {
+            shopifyId
+            handle
+          }
+        }
+      }
+    }
+  `);
+
+  data.allShopifyProduct.edges.forEach(({ node: { handle, shopifyId } }) => {
+    createPage({
+      path: `products/${handle}`,
+      context: {
+        shopifyId,
+      },
+      component: path.resolve('./src/templates/ProductTemplate/index.js'),
+    });
+  });
+};
