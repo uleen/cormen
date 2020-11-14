@@ -1,6 +1,11 @@
 import React from 'react';
 import { HeaderWrapper } from './styles';
+import { Cart } from 'components';
 
 export const Header = () => {
-  return <HeaderWrapper>Header</HeaderWrapper>;
+  return (
+    <HeaderWrapper>
+      <Cart />
+    </HeaderWrapper>
+  );
 };
