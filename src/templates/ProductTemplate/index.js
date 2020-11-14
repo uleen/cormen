@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import { navigate, useLocation } from '@reach/router';
 import queryString from 'query-string';
 
-import { Layout, ImageGallery } from 'components';
+import { Layout, ImageGallery, ProductQuantityAdder } from 'components';
 import CartContext from 'context/CartContext';
 
 import { Grid, SelectWrapper, Price } from './styles';
@@ -82,8 +82,15 @@ const ProductTemplate = props => {
                   </select>
                 </SelectWrapper>
               )}
-
-              <Price>{selectedVariant?.price} ₽</Price>
+              {!!selectedVariant && (
+                <>
+                  <Price>{selectedVariant?.price} ₽</Price>
+                  <ProductQuantityAdder
+                    available={selectedVariant.available}
+                    variantId={selectedVariant.id}
+                  />
+                </>
+              )}
             </>
           )}
         </div>
