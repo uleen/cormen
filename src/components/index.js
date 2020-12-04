@@ -10,3 +10,8 @@ export * from './StyledLink';
 export * from './CartContents';
 export * from './QuantityAdjuster';
 export * from './RemoveLineItem';
+export * from './HomepageCollectionsGrid';
+export * from './CollectionTile';
+export * from './FeaturedProducts';
+export * from './ProductsGrid';
+export * from './ProductTile';

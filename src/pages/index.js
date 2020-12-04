@@ -1,12 +1,28 @@
-import React from 'react';
-import { Layout, SEO } from 'components';
+import React, { useContext } from 'react';
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to the Gatsby &amp; Shopify starter.</p>
-  </Layout>
-);
+import { Layout, SEO } from 'components';
+import ProductContext from 'context/ProductContext';
+import { HomepageCollectionsGrid, FeaturedProducts } from 'components';
+
+const IndexPage = () => {
+  const { collections } = useContext(ProductContext);
+  const exactCollections = collections.filter(
+    collection => collection !== 'Featured'
+  );
+
+  const featuredCollection = collections.find(
+    collection => collection.title === 'Featured'
+  );
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <HomepageCollectionsGrid collections={exactCollections} />
+      {featuredCollection && (
+        <FeaturedProducts collection={featuredCollection} />
+      )}
+    </Layout>
+  );
+};
 
 export default IndexPage;
