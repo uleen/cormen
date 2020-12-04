@@ -13,7 +13,7 @@ export const Button = styled.button`
   outline: none;
   padding: 0 10px;
   height: 44px;
-  line-heigth: 44px;
+  line-height: 44px;
   box-shadow: none;
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
