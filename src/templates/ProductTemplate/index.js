@@ -4,7 +4,13 @@ import { graphql } from 'gatsby';
 import { navigate, useLocation } from '@reach/router';
 import queryString from 'query-string';
 
-import { Button, Layout, ImageGallery, ProductQuantityAdder } from 'components';
+import {
+  Button,
+  Layout,
+  ImageGallery,
+  ProductQuantityAdder,
+  SEO,
+} from 'components';
 import CartContext from 'context/CartContext';
 
 import { Grid, SelectWrapper, Price } from './styles';
@@ -49,6 +55,10 @@ const ProductTemplate = props => {
 
   return (
     <Layout>
+      <SEO
+        description={props.data.shopifyProduct.description}
+        title={props.data.shopifyProduct.title}
+      />
       <Button onClick={() => navigate(-1)}>Назад</Button>
       <Grid>
         <div>

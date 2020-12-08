@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import queryString from 'query-string';
 import { useLocation } from '@reach/router';
 
-import { Content, Filters, Layout, ProductsGrid } from 'components';
+import { Content, Filters, Layout, ProductsGrid, SEO } from 'components';
 import ProductContext from 'context/ProductContext';
 
 const AllProducts = () => {
@@ -56,6 +56,7 @@ const AllProducts = () => {
 
   return (
     <Layout>
+      <SEO descripion="all products" title="all products" />
       {!!searchTerm && !!filteredProducts.length && (
         <h3>
           Search term: <strong>'{searchTerm}'</strong>

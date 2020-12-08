@@ -16,7 +16,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO description="Store main page" title="Home page" />
       <HomepageCollectionsGrid collections={exactCollections} />
       {featuredCollection && (
         <FeaturedProducts collection={featuredCollection} />
