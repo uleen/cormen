@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
+import { navigate } from '@reach/router';
 
 import CartContext from 'context/CartContext';
-import { RemoveLineItem, QuantityAdjuster } from 'components';
+import { Button, RemoveLineItem, QuantityAdjuster } from 'components';
 
-import { CartItem, CartHeader, CartFooter } from './styles';
+import { CartItem, CartHeader, CartFooter, Footer } from './styles';
 
 export const CartContents = () => {
   const { checkout, updateLineItem } = useContext(CartContext);
@@ -14,13 +15,15 @@ export const CartContents = () => {
 
   return (
     <section>
-      <h1>Your cart</h1>
-      <CartHeader>
-        <div>Product</div>
-        <div>Unit Price</div>
-        <div>Quantity</div>
-        <div>Amount</div>
-      </CartHeader>
+      <h1>Корзина</h1>
+      {!!checkout?.lineItems && (
+        <CartHeader>
+          <div>Product</div>
+          <div>Unit Price</div>
+          <div>Quantity</div>
+          <div>Amount</div>
+        </CartHeader>
+      )}
       {checkout?.lineItems?.map(item => (
         <CartItem key={item.variant.id}>
           <div>
@@ -39,13 +42,38 @@ export const CartContents = () => {
           </div>
         </CartItem>
       ))}
-      <CartFooter>
-        <div />
+      {!!checkout?.lineItems && (
+        <CartFooter>
+          <div />
+          <div>
+            <strong>Total: </strong>
+            <span>₽ {checkout?.totalPrice}</span>
+          </div>
+        </CartFooter>
+      )}
+      {!checkout?.lineItems && <h4>Корзина пуста</h4>}
+      <Footer>
         <div>
-          <strong>Total: </strong>
-          <span>₽ {checkout?.totalPrice}</span>
+          <Button
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            Продолжить покупки
+          </Button>
         </div>
-      </CartFooter>
+        <div>
+          {!!checkout?.webUrl && (
+            <Button
+              onClick={() => {
+                window.location.href = checkout.webUrl;
+              }}
+            >
+              Checkout
+            </Button>
+          )}
+        </div>
+      </Footer>
     </section>
   );
 };

@@ -17,6 +17,9 @@ export const HomepageCollectionsGrid = ({ collections }) => {
       {!!saleCollection && (
         <CollectionTile
           sale
+          destination={`/all-products?c=${encodeURIComponent(
+            saleCollection.shopifyId
+          )}`}
           backgroundImage={
             saleCollection.image?.localFile.childImageSharp.fluid
           }
@@ -28,6 +31,9 @@ export const HomepageCollectionsGrid = ({ collections }) => {
       <RemainingCollectiions>
         {remainingCollections.map(collection => (
           <CollectionTile
+            destination={`/all-products?c=${encodeURIComponent(
+              collection.shopifyId
+            )}`}
             backgroundImage={collection.image?.localFile.childImageSharp.fluid}
             description={collection.description}
             key={collection.shopifyId}
