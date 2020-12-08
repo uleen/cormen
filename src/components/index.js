@@ -19,3 +19,4 @@ export * from './Filters';
 export * from './Content';
 export * from './Checkbox';
 export * from './Search';
+export * from './Logo';
